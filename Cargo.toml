@@ -1,0 +1,14 @@
+[package]
+name = "looptools-src"
+version = "0.1.0"
+edition = "2024"
+build = "build.rs"
+
+[dependencies]
+num-complex = "0.4.6"
+
+[build-dependencies]
+autotools = "0.2.7"
+reqwest = { version = "0.13.1", features = ["blocking"] }
+tar = "0.4.44"
+flate2 = "1.1.8"
