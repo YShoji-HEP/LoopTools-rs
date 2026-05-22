@@ -1,12 +1,43 @@
-use crate::data::*;
+use crate::datatypes::*;
 
 unsafe extern "C" {
     fn ltini_bridge();
     fn ltexi_bridge();
+
     fn clearcache_bridge();
     fn restorecache_bridge();
     fn setcmpbits_bridge(b: CIntType);
     fn getcmpbits_bridge(b: &mut CIntType);
+
+    fn setversionkey_bridge(k: CIntType);
+    fn getversionkey_bridge(k: &mut CIntType);
+    fn setmaxdev_bridge(eps: CRealType);
+    fn getmaxdev_bridge(eps: &mut CRealType);
+    fn setdebugkey_bridge(k: CIntType);
+    fn getdebugkey_bridge(k: &mut CIntType);
+    fn setdebugrange_bridge(f: CIntType, t: CIntType);
+
+    fn setwarndigits_bridge(d: CIntType);
+    fn getwarndigits_bridge(d: &mut CIntType);
+    fn seterrdigits_bridge(d: CIntType);
+    fn geterrdigits_bridge(d: &mut CIntType);
+
+    fn setdelta_bridge(del: CRealType);
+    fn getdelta_bridge(del: &mut CRealType);
+    fn setmudim_bridge(mu2: CRealType);
+    fn getmudim_bridge(mu2: &mut CRealType);
+    fn setlambda_bridge(lam2: CRealType);
+    fn getlambda_bridge(lam2: &mut CRealType);
+    fn setminmass_bridge(m2min: CRealType);
+    fn getminmass_bridge(m2min: &mut CRealType);
+    fn setuvdiv_bridge(x: CRealType);
+    fn getuvdiv_bridge(x: &mut CRealType);
+
+    fn setzeroeps_bridge(eps: CRealType);
+    fn getzeroeps_bridge(eps: &mut CRealType);
+    fn setdiffeps_bridge(eps: CRealType);
+    fn getdiffeps_bridge(eps: &mut CRealType);
+
     fn aput_bridge(res: &mut ACoeffs, m: CRealType);
     fn bput_bridge(res: &mut BCoeffs, p: CRealType, m1: CRealType, m2: CRealType);
     fn cput_bridge(
@@ -51,6 +82,8 @@ unsafe extern "C" {
     );
 }
 
+// ltini and ltexi
+
 pub fn ltini() {
     unsafe {
         ltini_bridge();
@@ -62,6 +95,8 @@ pub fn ltexi() {
         ltexi_bridge();
     }
 }
+
+// Cache Mechanism
 
 pub fn clearcache() {
     unsafe {
@@ -75,19 +110,203 @@ pub fn restorecache() {
     }
 }
 
-pub fn setcmpbits(b: i32) {
+pub fn setcmpbits(b: CIntType) {
     unsafe {
         setcmpbits_bridge(b);
     }
 }
 
-pub fn getcmpbits() -> i32 {
+pub fn getcmpbits() -> CIntType {
     let mut b = 0;
     unsafe {
         getcmpbits_bridge(&mut b);
     }
     b
 }
+
+// Versions and Debugging
+
+pub fn setversionkey(k: CIntType) {
+    unsafe {
+        setversionkey_bridge(k);
+    }
+}
+
+pub fn getversionkey() -> CIntType {
+    let mut k = 0;
+    unsafe {
+        getversionkey_bridge(&mut k);
+    }
+    k
+}
+
+pub fn setmaxdev(eps: CRealType) {
+    unsafe {
+        setmaxdev_bridge(eps);
+    }
+}
+
+pub fn getmaxdev() -> CRealType {
+    let mut eps = 0.;
+    unsafe {
+        getmaxdev_bridge(&mut eps);
+    }
+    eps
+}
+
+pub fn setdebugkey(k: CIntType) {
+    unsafe {
+        setdebugkey_bridge(k);
+    }
+}
+
+pub fn getdebugkey() -> CIntType {
+    let mut k = 0;
+    unsafe {
+        getdebugkey_bridge(&mut k);
+    }
+    k
+}
+
+pub fn setdebugrange(f: CIntType, t: CIntType) {
+    unsafe {
+        setdebugrange_bridge(f, t);
+    }
+}
+
+// Warning Messages and Checking Results
+
+pub fn setwarndigits(d: CIntType) {
+    unsafe {
+        setwarndigits_bridge(d);
+    }
+}
+
+pub fn getwarndigits() -> CIntType {
+    let mut d = 0;
+    unsafe {
+        getwarndigits_bridge(&mut d);
+    }
+    d
+}
+
+pub fn seterrdigits(d: CIntType) {
+    unsafe {
+        seterrdigits_bridge(d);
+    }
+}
+
+pub fn geterrdigits() -> CIntType {
+    let mut d = 0;
+    unsafe {
+        geterrdigits_bridge(&mut d);
+    }
+    d
+}
+
+// Ultraviolet, Infrared, and Collinear Divergences
+
+pub fn setdelta(del: CRealType) {
+    unsafe {
+        setdelta_bridge(del);
+    }
+}
+
+pub fn getdelta() -> CRealType {
+    let mut del = 0.;
+    unsafe {
+        getdelta_bridge(&mut del);
+    }
+    del
+}
+
+pub fn setmudim(mu2: CRealType) {
+    unsafe {
+        setmudim_bridge(mu2);
+    }
+}
+
+pub fn getmudim() -> CRealType {
+    let mut mu2 = 0.;
+    unsafe {
+        getmudim_bridge(&mut mu2);
+    }
+    mu2
+}
+
+pub fn setlambda(lam2: CRealType) {
+    unsafe {
+        setlambda_bridge(lam2);
+    }
+}
+
+pub fn getlambda() -> CRealType {
+    let mut lam2 = 0.;
+    unsafe {
+        getlambda_bridge(&mut lam2);
+    }
+    lam2
+}
+
+pub fn setminmass(m2min: CRealType) {
+    unsafe {
+        setminmass_bridge(m2min);
+    }
+}
+
+pub fn getminmass() -> CRealType {
+    let mut m2min = 0.;
+    unsafe {
+        getminmass_bridge(&mut m2min);
+    }
+    m2min
+}
+
+pub fn setuvdiv(x: CRealType) {
+    unsafe {
+        setuvdiv_bridge(x);
+    }
+}
+
+pub fn getuvdiv() -> CRealType {
+    let mut x = 0.;
+    unsafe {
+        getuvdiv_bridge(&mut x);
+    }
+    x
+}
+
+// Accuracy
+
+pub fn setzeroeps(eps: CRealType) {
+    unsafe {
+        setzeroeps_bridge(eps);
+    }
+}
+
+pub fn getzeroeps() -> CRealType {
+    let mut eps = 0.;
+    unsafe {
+        getzeroeps_bridge(&mut eps);
+    }
+    eps
+}
+
+pub fn setdiffeps(eps: CRealType) {
+    unsafe {
+        setdiffeps_bridge(eps);
+    }
+}
+
+pub fn getdiffeps() -> CRealType {
+    let mut eps = 0.;
+    unsafe {
+        getdiffeps_bridge(&mut eps);
+    }
+    eps
+}
+
+// Loop Functions
 
 pub fn aget(m: CRealType) -> ACoeffs {
     let mut res = ACoeffs::default();

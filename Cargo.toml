@@ -9,6 +9,6 @@ num-complex = "0.4.6"
 
 [build-dependencies]
 autotools = "0.2.7"
-reqwest = { version = "0.13.1", features = ["blocking"] }
-tar = "0.4.44"
-flate2 = "1.1.8"
+reqwest = { version = "0.13.3", features = ["blocking"] }
+tar = "0.4.46"
+flate2 = "1.1.9"

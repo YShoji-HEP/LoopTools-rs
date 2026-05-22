@@ -1,6 +1,6 @@
 # Rust Wrapper for LoopTools
 
-This project provides a Rust wrapper for LoopTools, a library designed for the calculation of Passino-Veltman integrals. The wrapper allows users to leverage the powerful capabilities of LoopTools within Rust applications, facilitating efficient and accurate computations in high-energy physics.
+This project provides a Rust wrapper for LoopTools-2.16, a library designed for the calculation of Passino-Veltman integrals. The wrapper allows users to leverage the powerful capabilities of LoopTools within Rust applications, facilitating efficient and accurate computations in high-energy physics.
 
 ## Features
 
